@@ -1,11 +1,10 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 import { User } from '../../services/user';
 
@@ -55,26 +54,11 @@ export class UserForm {
 
   });
 
-  readonly value = toSignal(
-    this.form.valueChanges,
-    {
-      initialValue: this.form.getRawValue()
-    }
-  );
+  onSubmit() {
 
-  readonly changes = toSignal(this.form.valueChanges);
+    if (this.form.invalid) return;
 
-  constructor() {
-
-    effect(() => {
-
-      this.changes();
-
-      if (!this.form.valid) return;
-
-      this.user.update(this.form.getRawValue());
-
-    });
+    this.user.update(this.form.getRawValue());
 
   }
 
