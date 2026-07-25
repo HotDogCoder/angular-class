@@ -1,8 +1,11 @@
 import { Component, signal } from '@angular/core';
+import { PokemonTable } from '../../components/pokemon-table/pokemon-table';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [
+    PokemonTable
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
