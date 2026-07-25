@@ -1,0 +1,41 @@
+.form {
+
+    max-width: 500px;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    label {
+
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+    }
+
+    input {
+
+        padding: .8rem;
+
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 1rem;
+
+        &:focus {
+
+            outline: none;
+            border-color: #2563eb;
+
+        }
+
+    }
+
+    small {
+
+        color: crimson;
+
+    }
+
+}

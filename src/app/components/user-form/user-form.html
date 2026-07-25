@@ -1,0 +1,67 @@
+<form class="form" [formGroup]="form">
+
+    <label>
+
+        Name
+
+        <input
+            formControlName="name"
+            type="text">
+
+        @if(form.controls.name.touched && form.controls.name.invalid){
+
+            <small>Name is required.</small>
+
+        }
+
+    </label>
+
+    <label>
+
+        Email
+
+        <input
+            formControlName="email"
+            type="email">
+
+        @if(form.controls.email.touched && form.controls.email.invalid){
+
+            <small>Invalid email.</small>
+
+        }
+
+    </label>
+
+    <label>
+
+        Age
+
+        <input
+            formControlName="age"
+            type="number">
+
+        @if(form.controls.age.touched && form.controls.age.invalid){
+
+            <small>Age must be between 18 and 120.</small>
+
+        }
+
+    </label>
+
+    <label>
+
+        Birth date
+
+        <input
+            formControlName="birthDate"
+            type="date">
+
+        @if(form.controls.birthDate.touched && form.controls.birthDate.invalid){
+
+            <small>Birth date is required.</small>
+
+        }
+
+    </label>
+
+</form>

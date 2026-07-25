@@ -1,0 +1,44 @@
+.footer {
+  background: #111827;
+  color: #d1d5db;
+  margin-top: 5rem;
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 4rem 24px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 3rem;
+  }
+
+  h3,
+  h4 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+
+  a {
+    display: block;
+    margin-bottom: .75rem;
+    text-decoration: none;
+    color: #d1d5db;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  .copyright {
+    border-top: 1px solid #374151;
+    padding: 1.25rem;
+    text-align: center;
+    font-size: .9rem;
+    color: #9ca3af;
+  }
+}
