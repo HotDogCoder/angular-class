@@ -1,73 +1,89 @@
-<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-
-    <label>
-
-        Name
+<form class="flex flex-wrap" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="w-full md:w-1/2 py-3 px-3 bg-blue-100 flex flex-col gap-2">
+        <label for="name">
+            Name
+        </label>
 
         <input
-            formControlName="name"
-            type="text">
+        class="px-1 py-2 border-amber-300 border-2 rounded-2xl"
+        placeholder="Nombre"
+        formControlName="name"
+        type="text"/>
 
         @if(form.controls.name.touched && form.controls.name.invalid){
-
             <small>Name is required.</small>
-
         }
 
-    </label>
+    </div>
 
-    <label>
+    <div class="w-full md:w-1/2 py-3 px-3 bg-blue-100">
+        <label>
 
-        Email
+            Email
 
-        <input
-            formControlName="email"
-            type="email">
+            <input
+                formControlName="email"
+                type="email">
 
-        @if(form.controls.email.touched && form.controls.email.invalid){
+            @if(form.controls.email.touched && form.controls.email.invalid){
 
-            <small>Invalid email.</small>
+                <small>Invalid email.</small>
 
-        }
+            }
 
-    </label>
+        </label>
+    </div>
 
-    <label>
+    <div class="w-full py-3 px-3 bg-blue-100">
 
-        Age
+        <label>
 
-        <input
-            formControlName="age"
-            type="number">
+            Age
 
-        @if(form.controls.age.touched && form.controls.age.invalid){
+            <input
+                formControlName="age"
+                type="number">
 
-            <small>Age must be between 18 and 120.</small>
+            @if(form.controls.age.touched && form.controls.age.invalid){
 
-        }
+                <small>Age must be between 18 and 120.</small>
 
-    </label>
+            }
 
-    <label>
+        </label>
 
-        Birth date
+    </div>
 
-        <input
-            formControlName="birthDate"
-            type="date">
+    <div class="w-full py-3 px-3 bg-blue-100">
 
-        @if(form.controls.birthDate.touched && form.controls.birthDate.invalid){
+        <label>
 
-            <small>Birth date is required.</small>
+            Birth date
 
-        }
+            <input
+                formControlName="birthDate"
+                type="date">
 
-    </label>
+            @if(form.controls.birthDate.touched && form.controls.birthDate.invalid){
 
-    <button
-        type="submit"
-        [disabled]="form.invalid">
-        Submit
-    </button>
+                <small>Birth date is required.</small>
+
+            }
+
+        </label>
+    </div>
+
+    <div class="w-full py-3 px-3 bg-blue-100">
+
+        <button
+            type="submit"
+            [disabled]="form.invalid">
+            Submit
+        </button>
+
+    </div>
 
 </form>
+
+
+

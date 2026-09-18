@@ -1,0 +1,59 @@
+@if (detail$ | async; as data) {
+
+<section class="pokemon-detail">
+
+    <a routerLink="/">&larr; Back</a>
+
+    <h1>{{ data.name | titlecase }} <small>#{{ data.id }}</small></h1>
+
+    @if (data.sprites.front_default) {
+    <img [src]="data.sprites.front_default" [alt]="data.name">
+    }
+
+    <ul class="basics">
+        <li><strong>Height:</strong> {{ data.height }}</li>
+        <li><strong>Weight:</strong> {{ data.weight }}</li>
+    </ul>
+
+    <h2>Types</h2>
+    <ul>
+        @for (item of data.types; track item.type.name) {
+        <li>{{ item.type.name | titlecase }}</li>
+        }
+    </ul>
+
+    <h2>Abilities</h2>
+    <ul>
+        @for (item of data.abilities; track item.ability.name) {
+        <li>
+            {{ item.ability.name | titlecase }}
+            @if (item.is_hidden) { (hidden) }
+        </li>
+        }
+    </ul>
+
+    <h2>Stats</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Stat</th>
+                <th>Base value</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of data.stats; track item.stat.name) {
+            <tr>
+                <td>{{ item.stat.name | titlecase }}</td>
+                <td>{{ item.base_stat }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</section>
+
+} @else {
+
+<p>Loading...</p>
+
+}
