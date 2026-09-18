@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { AsyncPipe, TitleCasePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
-
 import { Pokemon } from '../../services/pokemon';
 
 @Component({
@@ -14,10 +13,25 @@ import { Pokemon } from '../../services/pokemon';
 export class PokemonDetail {
 
   private readonly route = inject(ActivatedRoute);
+
   private readonly pokemon = inject(Pokemon);
 
   readonly detail$ = this.route.queryParamMap.pipe(
     switchMap(params => this.pokemon.getDetail(params.get('url')!))
   );
 
+  typeFilter = '';
+
+  filterTypes(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.typeFilter = input.value;
+  }
+
+  getFilteredTypes(types: any[]) {
+    return types.filter(item =>
+      item.type.name
+        .toLowerCase()
+        .includes(this.typeFilter.toLowerCase())
+    );
+  }
 }

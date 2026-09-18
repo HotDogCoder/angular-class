@@ -16,8 +16,16 @@
     </ul>
 
     <h2>Types</h2>
+
+    <input
+        type="text"
+        placeholder="Filter types..."
+        [value]="typeFilter"
+        (input)="filterTypes($event)"
+    >
+
     <ul>
-        @for (item of data.types; track item.type.name) {
+        @for (item of getFilteredTypes(data.types); track item.type.name) {
         <li>{{ item.type.name | titlecase }}</li>
         }
     </ul>
