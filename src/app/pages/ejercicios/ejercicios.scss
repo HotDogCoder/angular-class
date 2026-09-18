@@ -1,0 +1,80 @@
+.ejercicios {
+    padding: 2rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+
+    h2 {
+        margin-top: 2.5rem;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: .5rem .75rem;
+            text-align: left;
+        }
+    }
+
+    .filtros {
+        display: flex;
+        gap: .5rem;
+        margin-bottom: 1rem;
+
+        button {
+            padding: .4rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 999px;
+            background: white;
+            cursor: pointer;
+
+            &.activo {
+                background: #2563eb;
+                color: white;
+                border-color: #2563eb;
+            }
+        }
+    }
+
+    .agotado { color: #dc2626; }
+    .poco-stock { color: #d97706; }
+    .disponible { color: #16a34a; }
+
+    .tarjetas {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        list-style: none;
+        padding: 0;
+    }
+
+    .tarjeta {
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+        padding: 1rem;
+        border: 1px solid #e5e7eb;
+        border-left: 4px solid transparent;
+        border-radius: 8px;
+        transition: background-color .2s;
+
+        &.inactivo {
+            opacity: .6;
+        }
+    }
+
+    .nota {
+        font-size: .85rem;
+        color: #6b7280;
+    }
+
+    pre {
+        background: #111827;
+        color: #e5e7eb;
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+    }
+}

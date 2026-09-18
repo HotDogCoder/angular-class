@@ -1,0 +1,115 @@
+<section class="ejercicios">
+
+    <h1>Ejercicios: Pipes y Directivas</h1>
+    <p>Vista con data de prueba (mock) para practicar pipes y directivas de Angular.</p>
+
+    <h2>1. Pipes de texto</h2>
+    <ul>
+        @for (producto of productos(); track producto.id) {
+        <li>
+            {{ producto.nombre | uppercase }} — {{ producto.nombre | titlecase }}
+        </li>
+        }
+    </ul>
+
+    <h2>2. Pipes de moneda y porcentaje</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Descuento</th>
+                <th>Precio con descuento (pipe personalizado)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (producto of productos(); track producto.id) {
+            <tr>
+                <td>{{ producto.nombre | titlecase }}</td>
+                <td>{{ producto.precio | currency:'USD' }}</td>
+                <td>{{ producto.descuento | percent }}</td>
+                <td>{{ producto.precio | descuento:producto.descuento | currency:'USD' }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <h2>3. Pipe de fecha</h2>
+    <ul>
+        @for (producto of productos(); track producto.id) {
+        <li>
+            {{ producto.nombre | titlecase }} — lanzado el {{ producto.fechaLanzamiento | date:'longDate' }}
+        </li>
+        }
+    </ul>
+
+    <h2>4. Pipe slice (recorte de texto)</h2>
+    <ul>
+        @for (producto of productos(); track producto.id) {
+        <li>
+            <strong>{{ producto.nombre | titlecase }}:</strong>
+            {{ producto.descripcion | slice:0:40 }}...
+        </li>
+        }
+    </ul>
+
+    <h2>5. Directivas estructurales: &#64;if / &#64;for / &#64;switch</h2>
+
+    <div class="filtros">
+        @for (categoria of categorias; track categoria) {
+        <button
+            [class.activo]="categoriaSeleccionada() === categoria"
+            (click)="seleccionarCategoria(categoria)">
+            {{ categoria | titlecase }}
+        </button>
+        }
+    </div>
+
+    <ul>
+        @for (producto of productosFiltrados(); track producto.id) {
+        <li>
+
+            {{ producto.nombre | titlecase }}
+
+            @switch (producto.categoria) {
+                @case ('perifericos') { <span>🖱️ Periférico</span> }
+                @case ('monitores') { <span>🖥️ Monitor</span> }
+                @case ('mobiliario') { <span>🪑 Mobiliario</span> }
+                @default { <span>Otro</span> }
+            }
+
+            @if (producto.stock === 0) {
+                <span class="agotado">Agotado</span>
+            } @else if (producto.stock < 10) {
+                <span class="poco-stock">Últimas unidades ({{ producto.stock }})</span>
+            } @else {
+                <span class="disponible">Disponible ({{ producto.stock }})</span>
+            }
+
+        </li>
+        } @empty {
+        <li>No hay productos en esta categoría.</li>
+        }
+    </ul>
+
+    <h2>6. Directivas de atributo: NgClass y NgStyle</h2>
+    <ul class="tarjetas">
+        @for (producto of productos(); track producto.id) {
+        <li
+            class="tarjeta"
+            appResaltar="#dbeafe"
+            [ngClass]="{ inactivo: !producto.activo, agotado: producto.stock === 0 }"
+            [ngStyle]="{ 'border-left-color': producto.activo ? '#16a34a' : '#dc2626' }">
+
+            <strong>{{ producto.nombre | titlecase }}</strong>
+            <span>{{ producto.activo ? 'Activo' : 'Inactivo' }}</span>
+
+        </li>
+        }
+    </ul>
+    <p class="nota">Pasa el mouse sobre una tarjeta: usan la directiva personalizada <code>appResaltar</code>.</p>
+
+    <h2>7. Pipe json (depuración de datos)</h2>
+    <pre>{{ productos()[0] | json }}</pre>
+
+</section>
